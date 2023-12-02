@@ -76,5 +76,19 @@ namespace Bikes.Controllers
             
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(string id)
+        {
+          
+            var user =   _context.Users.FirstOrDefault(m => m.Id == id);
+            if (user != null)
+            {
+                 _context.Remove(user);
+            
+
+            }
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        
     }
 }

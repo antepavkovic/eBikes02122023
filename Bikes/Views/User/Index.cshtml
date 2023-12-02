@@ -65,7 +65,8 @@
             
                <td>
                     <a asp-controller="User" asp-action="RoleManagment" asp-route-id="@item.Id">Permission</a>
-
+                    <hr/>
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete User</a>
                 </td> 
             </tr>
         }

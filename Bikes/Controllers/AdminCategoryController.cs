@@ -86,12 +86,12 @@ namespace Bikes.Controllers
             {
                 try
                 {
-                    _context.Update(category);/*izmjenjuje stanje?*/
-                    await _context.SaveChangesAsync();//sprema sve ponovno id,title ,productcategories..
+                    _context.Update(category);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))//ako kategorija sa Id.iskreno neznam zasto ovo pise
+                    if (!CategoryExists(category.Id))
                     {
                         return NotFound();
                     }
@@ -100,46 +100,45 @@ namespace Bikes.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));//In ASP.NET MVC, the RedirectToAction function is used to switch pages and transfer data between action methods
+                return RedirectToAction(nameof(Index));
             }
-            return View(category);//vraca categoriju ako nismo uspjeli spremit samo da nesto mora returnat
+            return View(category);
         }
 
         // GET: AdminCategory/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Category == null)//id=7, a movies .models.categories imamo[0]  i[1],dakle 2 titlea
+            if (id == null || _context.Category == null)
             {
-                return NotFound();//views:edit nece se izvrsit
+                return NotFound();
             }
 
             var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Id == id);//categorija je jednaka onoj kategoriji na koju stisnemo delete,//selektira npr.šegrta za brisanje
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
-                return NotFound();//views:edit
+                return NotFound();
             }
 
-            return View(category);//views:delete.cshtml
+            return View(category);
         }
 
         // POST: AdminCategory/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)//ova akcija ide kada stisnemo u viewu delete confimed poslje pitanja
-                                                                //are you shure you want to delete this category stisnemo delete
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Category == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
             }
-            var category = await _context.Category.FindAsync(id);//selektira npr.šegrta za brisanje
+            var category = await _context.Category.FindAsync(id);
             if (category != null)
             {
-                _context.Category.Remove(category);//briše kategoriju
+                _context.Category.Remove(category);
             }
             
-            await _context.SaveChangesAsync();//sprema brisano
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
