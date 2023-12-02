@@ -1,0 +1,93 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order no. @Model.Id.ToString()</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">     @Html.DisplayNameFor(model => model.BillingFirstName)</th>
+                <th scope="col">   @Html.DisplayNameFor(model => model.BillingLastName) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.BillingEmail) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.BillingPhone)  </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.BillingAddress) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.BillingCity) </th>
+                <th scope="col">  @Html.DisplayNameFor(model => model.BillingPostalCode) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.BillingCountry)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.BillingFirstName) </td>
+                <td>@Html.DisplayFor(model => model.BillingLastName)</td>
+                <td> @Html.DisplayFor(model => model.BillingEmail)</td>
+                <td> @Html.DisplayFor(model => model.BillingPhone)</td>
+                <td> @Html.DisplayFor(model => model.BillingAddress)</td>
+                <td> @Html.DisplayFor(model => model.BillingCity)</td>
+                <td> @Html.DisplayFor(model => model.BillingPostalCode)</td>
+                <td> @Html.DisplayFor(model => model.BillingCountry)</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">     @Html.DisplayNameFor(model => model.ShipppingFirstName)</th>
+                <th scope="col">   @Html.DisplayNameFor(model => model.ShipppingLastName) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.SipppingEmail) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.SipppingPhoneNumber)  </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.SipppingAddress) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.SipppingCity) </th>
+                <th scope="col">  @Html.DisplayNameFor(model => model.SipppingPostalCode) </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.SipppingCountry)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.ShipppingFirstName) </td>
+                <td>@Html.DisplayFor(model => model.ShipppingLastName)</td>
+                <td> @Html.DisplayFor(model => model.SipppingEmail)</td>
+                <td> @Html.DisplayFor(model => model.SipppingPhoneNumber)</td>
+                <td> @Html.DisplayFor(model => model.SipppingAddress)</td>
+                <td> @Html.DisplayFor(model => model.SipppingCity)</td>
+                <td> @Html.DisplayFor(model => model.SipppingPostalCode)</td>
+                <td> @Html.DisplayFor(model => model.SipppingCountry)</td>
+            </tr>
+        </tbody>
+    </table>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total) €
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+    </dl>
+    <partial name="_OrderItemsPartial" for="@Model.OrderItems" />
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

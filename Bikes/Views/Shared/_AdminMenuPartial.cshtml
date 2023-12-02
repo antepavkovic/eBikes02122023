@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Bikes.Models;
+@using Bikes.ViewModels
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+        <div class="dropdown-menu">
+
+            <a class="dropdown-item" asp-action="Index" asp-controller="AdminCategory">Categories</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="AdminBike">Bikes</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-action="Index" asp-controller="AdminOrder">Orders</a>
+
+        <a class="nav-link text-dark" asp-controller="User" asp-action="Index">User controller</a>
+
+        </div>
+    </li>
+    }
+ 

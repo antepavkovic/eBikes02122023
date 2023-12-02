@@ -1,0 +1,53 @@
+﻿﻿
+
+@model IEnumerable<Bikes.Models.BikeImage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-controller="AdminBike" asp-action="Edit" asp-route-id="@ViewBag.BikeId">Back to Bike</a>
+</p>
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.BikeId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IsMainImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Image
+                @* @Html.DisplayNameFor(model => model.FileName) *@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMainImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                 <img src="@item.FileName" alt="@item.Name" height="100" />
+                @* @Html.DisplayFor(modelItem => item.FileName) *@
+            </td>
+            <td>
+@*                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

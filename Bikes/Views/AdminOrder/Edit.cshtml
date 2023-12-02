@@ -1,0 +1,136 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Order no.@Model.Id</h4>
+<h5>Created on @Model.DateCreated.ToString("yyyy-MM-dd")</h5>
+<hr />
+<div class="row">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Total" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="DateCreated" />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"><label asp-for="BillingFirstName" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingLastName" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingEmail" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingPhone" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingAddress" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingCity" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingPostalCode" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="BillingCountry" class="control-label"></label></th>
+                </tr>
+            </thead>
+            <tbody>
+            <td>
+                <input asp-for="BillingFirstName" class="form-control" />
+                <span asp-validation-for="BillingFirstName" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingLastName" class="form-control" />
+                <span asp-validation-for="BillingLastName" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingEmail" class="form-control" />
+                <span asp-validation-for="BillingEmail" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingPhone" class="form-control" />
+                <span asp-validation-for="BillingPhone" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingAddress" class="form-control" />
+                <span asp-validation-for="BillingAddress" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingCity" class="form-control" />
+                <span asp-validation-for="BillingCity" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingPostalCode" class="form-control" />
+                <span asp-validation-for="BillingPostalCode" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="BillingCountry" class="form-control" />
+                <span asp-validation-for="BillingCountry" class="text-danger"></span>
+            </td>
+            </tbody>
+        </table>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"><label asp-for="ShipppingFirstName" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="ShipppingLastName" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingEmail" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingPhoneNumber" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingAddress" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingCity" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingPostalCode" class="control-label"></label></th>
+                    <th scope="col"><label asp-for="SipppingCountry" class="control-label"></label></th>
+                </tr>
+            </thead>
+            <tbody>
+            <td>
+                <input asp-for="ShipppingFirstName" class="form-control" />
+                <span asp-validation-for="ShipppingFirstName" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="ShipppingLastName" class="form-control" />
+                <span asp-validation-for="ShipppingLastName" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingEmail" class="form-control" />
+                <span asp-validation-for="SipppingEmail" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingPhoneNumber" class="form-control" />
+                <span asp-validation-for="SipppingPhoneNumber" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingAddress" class="form-control" />
+                <span asp-validation-for="SipppingAddress" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingCity" class="form-control" />
+                <span asp-validation-for="SipppingCity" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingPostalCode" class="form-control" />
+                <span asp-validation-for="SipppingPostalCode" class="text-danger"></span>
+            </td>
+            <td>
+                <input asp-for="SipppingCountry" class="form-control" />
+                <span asp-validation-for="SipppingCountry" class="text-danger"></span>
+                <span asp-validation-for="SipppingCountry" class="text-danger"></span>
+            </td>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <label asp-for="Message" class="control-label"></label>
+            <textarea asp-for="Message" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<br />
+
+<hr />
+
+<a asp-action="Index" asp-controller="AdminOrderItem" asp-route-id="@Model.Id">Edit order items</a>
+<partial name="_OrderItemsPartial" for="@Model.OrderItems" />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

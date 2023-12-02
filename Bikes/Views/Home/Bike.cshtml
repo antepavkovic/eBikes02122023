@@ -1,0 +1,80 @@
+﻿@model List<Bike>
+
+@{
+    ViewData["Title"] = "Bikes";
+}
+
+<h2>Bike list</h2>
+
+<div class="row mb-5">
+    <div class="col-2">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter by category
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <a class="dropdown-item" asp-action="Bike" asp-route-categoryId="@item.Id">@item.Name</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+        <a asp-action="Bike" class="btn btn-warning">Clear filter</a>
+    </div>
+</div>
+
+<div class="row mt-3">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                     <a asp-action="Bike"asp-route-id="@item.Id"style="text-decoration:none;color:inherit">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                    @{
+                        try
+                        {
+                            var image = item.BikeImages.FirstOrDefault(x => x.IsMainImage == true);
+                            if (image != null)
+                            {
+                                <img class="card-img" src="@image.FileName" alt="@item.Name" />
+                            }
+                            else
+                            {
+                                <img class="card-img" src="~/images/noimage.jpg" alt="@item.Name" />
+                            }
+                        }
+                        catch
+                        {
+                            <img class="card-img" src="~/images/noimage.jpg" alt="@item.Name" />
+                        }
+                    }
+                    </a>
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th> Price </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> @item.Price €</td>
+                                <td>
+                                    <form method="post" asp-controller="Cart" asp-action="AddToCart">
+                                        <input type="hidden" name="productId" value="@item.Id" />
+                                        <input type="submit" class="btn btn-success btn-sm" value="Add to cart">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

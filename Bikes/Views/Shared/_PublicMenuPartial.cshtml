@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using Bikes.Extensions;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Bike" asp-route-id="">Bikes</a>
+</li>
+<li class="nav-item">
+    @{
+        var cart = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<Bikes.Extensions.CartItem>>("_cart");
+        int broj = 0;
+        if (cart != null)
+        {
+            broj = cart.Count();
+        }
+        string ispis = " Cart ";
+        if (broj > 0)
+        {
+            ispis += " ( " + broj + " ) ";
+        }
+    }
+    <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+
+        @ispis
+    </a>
+</li>

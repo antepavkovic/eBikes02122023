@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OrderItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Order Items for order no.@ViewContext.RouteData.Values["id"]</h1>
+
+<p>
+    <a asp-action="Index" asp-controller="AdminOrder" asp-route-id="@ViewContext.RouteData.Values["id"]">Back to Order edit</a>
+</p>
+<p>
+    <a asp-action="Create">Add to Order</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BikeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.Price)
+            </th>
+            <th>
+                Total item price:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BikeName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @((item.Price * item.Quantity).ToString("0.00")) €
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+            </td>
+            <td>
+
+                <b>
+                    Total:
+                </b>
+            </td>
+            <td>
+                @Model.Sum(x=>x.Price*x.Quantity).ToString("0.00") €
+            </td>
+        </tr>
+    </tbody>
+</table>

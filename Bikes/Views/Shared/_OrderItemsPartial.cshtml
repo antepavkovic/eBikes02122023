@@ -1,0 +1,40 @@
+﻿@model List<OrderItem>
+
+<table class="table">
+    <thead>
+    <th>
+        Product
+    </th>
+    <th>
+        Quantity
+
+    </th>
+    <th>
+        Price
+    </th>
+    <th>
+        Total
+    </th>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.BikeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Price)
+
+                </td>
+                <td>
+                    @((item.Price * item.Quantity).ToString("0.00")) €
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,87 @@
+﻿﻿
+@model Bikes.Models.Bike
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Bike</h4>
+<hr />
+<div class="row">
+    @if (Model.BikeImages != null)
+    {
+        foreach (var image in Model.BikeImages)
+        {
+            <div class="col-sm-3">
+                <img src="@image.FileName" alt="@Model.Name" height="100" />
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-sm-3">
+            <img src="~/images/noimage.png" alt="@Model.Name" height="100" />
+        </div>
+    }
+</div>
+<a asp-controller="AdminBikeImage" asp-action="Index" asp-route-id="@Model.Id">Edit images</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" > </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <form asp-action="EditCategory">
+            <input type="hidden" asp-for="Id" />
+            <label>Categories</label>
+            @foreach (Category cat in ViewBag.Categories)
+            {
+                <div class="form-group">
+                    @Html.CheckBox(cat.Name,Model.BikeCategories.Count(x=>x.CategoryId==cat.Id)>0)
+                    @Html.Label(cat.Name)
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save categories" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
