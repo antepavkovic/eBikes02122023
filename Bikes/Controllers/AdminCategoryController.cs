@@ -24,16 +24,16 @@ namespace Bikes.Controllers
         // GET: AdminCategory
         public async Task<IActionResult> Index()
         {
-            return _context.Category != null ? //ako category tablica nije prazna
-                        View(await _context.Category.ToListAsync()) ://onda prikaži listu kategorija
-                        Problem("Entity set 'ApplicationDbContext.Category'  is null.");//neznam sta ovo radi
+            return _context.Category != null ? 
+                        View(await _context.Category.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Category'  is null.");
         }
 
       
        
         public IActionResult Create()
         {
-            return View();//vraca create view sa title ,create ,back to list(create view)
+            return View();
         }
 
         // POST: AdminCategory/Create
@@ -41,33 +41,33 @@ namespace Bikes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)//ovaj create ide tek kada se upise title i stisne na create
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             ModelState.Remove("BikeCategories");
 
-            if (ModelState.IsValid)//upisali smo title,izbrisali  product categories i model state je valid
+            if (ModelState.IsValid)
             {
-                _context.Add(category);//Upisuje u bazu podataka kategoriju koju smo upisali:product categories = null,title =...,id ide automatski
-                await _context.SaveChangesAsync();//spremi to u bazu podataka
-                return RedirectToAction(nameof(Index));//vraca na popis kategorija
+                _context.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            return View(category);//View:Category (za ispunit)
+            return View(category);
         }
 
         // GET: AdminCategory/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Category == null)//id=7, a movies .models.categories imamo[0]  i[1],dakle 2 titlea
+            if (id == null || _context.Category == null)
             {
-                return NotFound();//views:edit
+                return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);//categorija je jednaka onoj kategoriji na koju stisnemo edit
-            if (category == null)//False
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
-                return NotFound();//views:edit
+                return NotFound();
             }
-            return View(category);//views:edit html
+            return View(category);
         }
 
         // POST: AdminCategory/Edit/5
@@ -77,7 +77,7 @@ namespace Bikes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
-            if (id != category.Id)//id=7 i kategory id =7 dakle ne vraca not found
+            if (id != category.Id)
             {
                 return NotFound();
             }

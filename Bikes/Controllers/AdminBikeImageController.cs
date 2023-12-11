@@ -57,18 +57,14 @@ namespace Bikes.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "AdminBike");//nazad na proizvode
+                return RedirectToAction("Index", "AdminBike");
 
             }
             if (_context.Bike.Count(p => p.Id == id) == 0)
             {
-                return RedirectToAction("Index", "AdminBike");//da nas vrati na admin products.
-                                                                 //gleda dali proizvod uopce postoji 
+                return RedirectToAction("Index", "AdminBike");
             }
-            return View(new BikeImage() { BikeId = (int)id });//prosljeđujemo dedfinirani
-                                                                    //model onda znamo da ce nam
-                                                                    //model u samom startu sadržavati
-                                                                    //id proizvoda na koji se odnosi
+            return View(new BikeImage() { BikeId = (int)id });
         }
 
         // POST: AdminBikeImage/Create

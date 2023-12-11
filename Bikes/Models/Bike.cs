@@ -8,7 +8,7 @@ namespace Bikes.Models
     {
         [Key]
 
-        public int Id { get; set; }//foreign key na ovaj id se veže još naci **?*
+        public int Id { get; set; }
 
         [Required]
 
