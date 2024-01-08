@@ -39,15 +39,15 @@ namespace Bikes.Controllers
             return View(users);
         }
 
-        public IActionResult RoleManagment(string Id)
+        public IActionResult RoleManagment(string id)
         { 
             
 
-            string RoleID =_context.UserRoles.FirstOrDefault(u => u.UserId ==Id).RoleId;
+            string RoleID =_context.UserRoles.FirstOrDefault(u => u.UserId ==id).RoleId;
            
             RoleManagmentVM Roleman = new RoleManagmentVM()
             {
-                ApplicationUser = _context.Users.FirstOrDefault(u => u.Id == Id),
+                ApplicationUser = _context.Users.FirstOrDefault(u => u.Id == id),
                 RoleList = _context.Roles.Select(i => new SelectListItem
                 {
                     Text = i.Name,

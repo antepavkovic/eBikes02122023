@@ -26,11 +26,11 @@ namespace Bikes.Controllers
             _userManager = userManager;
         }
 
-    
 
-        public IActionResult Index(int id)
+
+        public IActionResult Index(string? message)
         {
-            return View("Index");
+            return View("Index", message);
         }
 
         public IActionResult Privacy()

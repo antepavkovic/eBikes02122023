@@ -48,8 +48,7 @@ namespace Movies2.Controllers
             {
                 CartItem item = new CartItem()
                 {
-                    Bike = _context.Bike.Find(productId),
-                    Quantity = 1
+                    Bike = _context.Bike.Find(productId= 1)
                 };
                 cart.Add(item);
                 HttpContext.Session.SetObjectAsJson(SessionKeyName, cart);

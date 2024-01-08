@@ -72,11 +72,11 @@ ViewData["Title"] = "Order Page";
                             <td>@item.Bike.Price.ToString("0.00") €</td>
             <td>
                 @* @item.Quantity *@
-                <form method="post" asp-controller="Cart" asp-action="ChangeCartItemQuantity">
-                                    <input type="hidden" name="bikeId" value="@item.Bike.Id" />
-                    <input type="number" placeholder="@item.Quantity" name="quantity" value="@item.Quantity" />
-                    <input type="submit" class="btn btn-info btn-sm" value="Change">
-                </form>
+                                <form method="post" asp-controller="Cart" asp-action="ChangeCartItemQuantity">
+                                    <input type="hidden" name="productId" value="@item.Bike.Id" />
+                                    <input type="number" placeholder="@item.Quantity" name="quantity" value="@item.Quantity" />
+                                    <input type="submit" class="btn btn-info btn-sm" value="Change">
+                                </form>
             </td>
                             <td>@((item.Bike.Price * item.Quantity).ToString("0.00")) €</td>
         </tr>

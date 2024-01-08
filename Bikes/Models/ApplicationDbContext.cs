@@ -30,6 +30,7 @@ namespace Bikes.Models
         [StringLength(100)]
         public string? Country { get; set; }
         public string? County { get; set; }
+        public override string? Email { get; set; }
         [ForeignKey("UserId")]
         public virtual ICollection<Order>? Orders { get; set; }
     }

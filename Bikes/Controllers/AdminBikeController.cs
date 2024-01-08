@@ -22,6 +22,7 @@ namespace Bikes.Controllers
         }
 
         // GET: AdminBike
+        [HttpGet]
         public async Task<IActionResult> Index(int id)
         {
             if (_context.Bike == null)
@@ -82,6 +83,7 @@ namespace Bikes.Controllers
         }
 
         // GET: AdminBike/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Bike == null)
@@ -136,14 +138,13 @@ namespace Bikes.Controllers
             }
             return View(bike);
         }
-        [HttpPost]
-        [HttpPost]
+ 
         public async Task<IActionResult> EditCategory(int id)
         {
             List<Category> categories = _context.Category.ToList();
             foreach (var cat in categories)
             {
-                var checkbox = Request.Form[cat.Name];
+                    var checkbox = Request.Form[cat.Name];
                 if (checkbox.Contains("true"))
                 {
                     if (_context.BikeCategory.FirstOrDefault(x => x.CategoryId == cat.Id && x.BikeId == id) == null)

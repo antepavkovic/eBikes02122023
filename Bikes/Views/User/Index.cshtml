@@ -26,12 +26,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </th>
-
-            <th> @Html.DisplayNameFor(model => model.Country)</th>
-
+          
+            <th> @Html.DisplayNameFor(model => model.Email)</th>
             <th> @Html.DisplayNameFor(model => model.Role)</th>
         </tr>
     </thead>
@@ -53,15 +49,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.City)
                 </td>
+           
+          
                 <td>
-                    @Html.DisplayFor(modelItem => item.PostalCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
+                    @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
-
+                </td>
             
                <td>
                     <a asp-controller="User" asp-action="RoleManagment" asp-route-id="@item.Id">Permission</a>
